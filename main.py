@@ -41,19 +41,19 @@ def notas_formulas(opcion,nota_escogida):
 		reopcion=10
 
 	if(opcion==1):
-		nota_max(matriz_alumnos,reopcion)
+		return nota_max(matriz_alumnos,reopcion)
 	elif(opcion==2):
-		nota_min(matriz_alumnos,reopcion)
+		return nota_min(matriz_alumnos,reopcion)
 	elif(opcion==3):
-		promedio(matriz_alumnos,reopcion)
+		return promedio(matriz_alumnos,reopcion)
 	elif(opcion==4):
-		moda(matriz_alumnos,reopcion)
+		return moda(matriz_alumnos,reopcion)
 	elif(opcion==5):
-		desviacion_media(matriz_alumnos,reopcion)
+		return desviacion_media(matriz_alumnos,reopcion)
 	elif(opcion==6):
-		varianza(matriz_alumnos,reopcion)
+		return varianza(matriz_alumnos,reopcion)
 	elif(opcion==7):
-		desviacion_standard(matriz_alumnos,reopcion)
+		return desviacion_standard(matriz_alumnos,reopcion)
 
 def submenu():
 	print('\n')
@@ -288,7 +288,30 @@ def obtener_ponderado():
 			posicion += 1
 		lista.append(matriz_alumnos[i][1] + ' ' + str(round(nota, 2)))
 	return lista
-		
+
+def opcion_8():
+	print("1. E1.")
+	print("2. C1.")
+	print("3. C2.")
+	print("4. PC1.")
+	print("5. PC2.")
+	print("6. PC3.")
+	print("7. PC4.")
+	print("8. P1.")
+	print("9. P2.")
+	print(" ")
+	nota_escogida=int(input("Indique el rubro de evaluación : "))
+	
+	file = open("analisis.txt", "w", encoding = "utf-8")
+	file.write("Nombre del rubro de evaluación: " + str(nota_escogida) + "\n")
+	file.write(notas_formulas(1, nota_escogida) + "\n")
+	file.write(notas_formulas(2, nota_escogida) + "\n")
+	file.write(notas_formulas(3, nota_escogida) + "\n")
+	file.write(notas_formulas(4, nota_escogida) + "\n")
+	file.write(notas_formulas(5, nota_escogida) + "\n")
+	file.write(notas_formulas(6, nota_escogida) + "\n")
+	file.write(notas_formulas(7, nota_escogida) + os.linesep)
+	file.close()
 
 def menu():
 	opcion=0

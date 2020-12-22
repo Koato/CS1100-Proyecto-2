@@ -11,7 +11,7 @@ def nota_max(matriz,reopcion):
     for i in range(len(matriz)):
         if( matriz[i][reopcion] == max):
            count = count + 1 
-    print("Nota maxima : ",str(max)," , cantidad de alumnos con esa nota : ",str(count))
+    return "Nota maxima : " + str(max) + " , cantidad de alumnos con esa nota : " + str(count)
 
 
 def nota_min(matriz,reopcion):
@@ -25,7 +25,7 @@ def nota_min(matriz,reopcion):
     for i in range(len(matriz)):
         if( matriz[i][reopcion] == min):
            count = count + 1 
-    print("Nota minima : ",str(min)," , cantidad de alumnos con esa nota : ",str(count))
+    return "Nota minima : " + str(min) + " , cantidad de alumnos con esa nota : " + str(count)
 
 
 def promedio(matriz,reopcion):
@@ -34,7 +34,7 @@ def promedio(matriz,reopcion):
     for i in range(len(matriz)):
         suma = suma + matriz[i][reopcion]
 
-    print("El  promedio es : " ,float(suma/len(matriz)))
+    return "El  promedio es : " + str(float(suma/len(matriz)))
 
 def moda(matriz,reopcion):
     lista=[]
@@ -59,7 +59,7 @@ def moda(matriz,reopcion):
             pos=i
     
 
-    print("La moda es : ",lista[pos])
+    return "La moda es : " + str(lista[pos])
 
 
 def desviacion_media(matriz,reopcion):
@@ -71,11 +71,11 @@ def desviacion_media(matriz,reopcion):
     promedio=float(promedio/len(matriz))
 
     for i in range(len(matriz)):
-        print(matriz[i][1],"  : Desviacion con respecto a la media ",end="")
         if(matriz[i][reopcion] - promedio < 0):
             print((matriz[i][reopcion]-promedio * -1))
         else:
             print((matriz[i][reopcion]-promedio))            
+        return str(matriz[i][1]) + "  : Desviacion con respecto a la media "
 
 def varianza(matriz,reopcion):
     promedio=0
@@ -88,7 +88,7 @@ def varianza(matriz,reopcion):
     for i in range(len(matriz)):
         suma_total= suma_total + (matriz[i][reopcion] - promedio) ** 2
     
-    print("La varianza es ",float(suma_total/len(matriz)))
+    return "La varianza es " + str(float(suma_total/len(matriz)))
 
 def desviacion_standard(matriz,reopcion):
     promedio=0
@@ -103,4 +103,4 @@ def desviacion_standard(matriz,reopcion):
 
     suma_total = math.sqrt(float(suma_total/len(matriz)))            
 
-    print("La deviacion estandar es ",suma_total)
+    return "La deviacion estandar es " + str(suma_total)
