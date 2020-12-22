@@ -114,8 +114,8 @@ def opcion_3():
 			if(cont==2):
 				print("%.2f" %j)
 			else:
-				print(j,end='')
-				print("   ",end='')
+				print(j, end = '')
+				print("   ", end = '')
 			cont=cont+1
 	print('\n')
 
@@ -195,43 +195,64 @@ def opcion_2():
 def opcion_1(matriz):
 	for i in range(11):
 		if(i==0):
-			print("codigo   ",end='')
+			print("codigo   ", end = '')
 		elif(i==1):
-			print("   nombre   ",end='')
+			print("   nombre   ", end = '')
 		elif(i==2):
-			print("   E1      ",end='')
+			print("   E1      ", end = '')
 		elif(i==3):
-			print("    C1      ",end='')
+			print("    C1      ", end = '')
 		elif(i==4):
-			print("    C2      ",end='')
+			print("    C2      ", end = '')
 		elif(i==5):
-			print("    PC1     ",end='')
+			print("    PC1     ", end = '')
 		elif(i==6):
-			print("    PC2     ",end='')
+			print("    PC2     ", end = '')
 		elif(i==7):
-			print("    PC3     ",end='')
+			print("    PC3     ", end = '')
 		elif(i==8):
-			print("    PC4     ",end='')
+			print("    PC4     ", end = '')
 		elif(i==9):
-			print("    P1      ",end='')
+			print("    P1      ", end = '')
 		elif(i==10):
 			print("    P2 ",)
 	for i in range(len(matriz)):
 		for j in matriz[i]:
-			print(j,end='')
+			print(j, end = '')
 			for k in range(12 - len(str(j))):
-				print(' ',end='')
+				print(' ', end = '')
 		print('')
 	print("\n")
 
 def opcion_5(matriz):
-	file = open("alumnos.txt", "w", encoding="utf-8")
+	file = open("alumnos.txt", "w", encoding = "utf-8")
 	file.write("Código Nombre Apellido 9 notas" + os.linesep)
 	for i in range(len(matriz)):
 		for j in matriz[i]:
 			file.write(str(j).title() + ' ')
 		file.write("\n")
 	file.close()
+
+def opcion_6():
+	archivo = open('alumnos.txt', 'r', encoding = "utf-8")
+	archivo.__next__()
+	archivo.__next__()
+	for linea in archivo.readlines():
+		lista = []
+		x = linea.split(" ")
+		lista.append(int(x[0]))
+		lista.append('' + x[1] + " " + x[2] + '')
+		lista.append(int(x[3]))
+		lista.append(int(x[4]))
+		lista.append(int(x[5]))
+		lista.append(int(x[6]))
+		lista.append(int(x[7]))
+		lista.append(int(x[8]))
+		lista.append(int(x[9]))
+		lista.append(int(x[10]))
+		lista.append(int(x[11]))
+		matriz_alumnos.append(lista)
+	archivo.close()
 
 def menu():
 	opcion=0
