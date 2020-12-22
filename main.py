@@ -1,5 +1,6 @@
 import sys
 import os
+import copy
 from Funciones import *
 
 matriz_alumnos = [[201910512,"jose diaz", 11,11,12,13,11,15,12,16,14],
@@ -254,6 +255,41 @@ def opcion_6():
 		matriz_alumnos.append(lista)
 	archivo.close()
 
+def opcion_7():
+	lista = obtener_ponderado()
+	for f in range(len(lista)):
+		for actual in range(len(lista) - 1):
+			siguiente_elemento = actual + 1
+			if lista[actual].split(" ")[2] > lista[siguiente_elemento].split(" ")[2]:
+				lista[siguiente_elemento], lista[actual] = lista[actual], lista[siguiente_elemento]
+	file = open("promedios.txt", "w", encoding = "utf-8")
+	file.write("Nombre Apellido Promedio ponderado" + os.linesep)
+	for i in reversed(range(len(lista))):
+		file.write(str(lista[i]).title() + "\n")
+	file.close()
+
+def obtener_ponderado():
+	matriz_alumnos_copia = copy.deepcopy(matriz_alumnos)
+	lista = []
+	for i in range(len(matriz_alumnos_copia)):
+		matriz_alumnos_copia[i].pop(0)
+		matriz_alumnos_copia[i].pop(0)
+		posicion = 0
+		nota = 0
+		for j in matriz_alumnos_copia[i]:
+			if posicion == 0:
+				nota += j * 0.4
+			elif posicion == 1 or posicion == 2:
+				nota += j * 0.04
+			elif posicion == 3 or posicion == 4 or posicion == 5 or posicion == 6:
+				nota += j * 0.09
+			elif posicion == 7 or posicion == 8:
+				nota += j * 0.08
+			posicion += 1
+		lista.append(matriz_alumnos[i][1] + ' ' + str(round(nota, 2)))
+	return lista
+		
+
 def menu():
 	opcion=0
 	while(True):
@@ -264,12 +300,14 @@ def menu():
 		print("5.Grabar en archivo.")
 		print("6.Leer información del archivo.")
 		print("7.Reporte.")
-		print("8.Salir.")
+		print("8.Reporte de análisis de un rubro de evaluación.")
+		print("9.Salir.")
 		print("\n")
 		opcion=input("Digita la opcion : ")
 		if opcion.isdigit():
 			opcion = int(opcion)
-			if(opcion == 1 or opcion == 2 or opcion == 3 or opcion == 4 or opcion == 5 or opcion == 6 or opcion == 7):
+			if(opcion == 1 or opcion == 2 or opcion == 3 or opcion == 4 
+			or opcion == 5 or opcion == 6 or opcion == 7 or opcion == 8):
 				if(opcion == 1):
 					opcion_1(matriz_alumnos)
 				elif(opcion == 2):
@@ -284,7 +322,9 @@ def menu():
 					opcion_6()
 				elif(opcion == 7):
 					opcion_7()
-			elif(opcion == 8):
+				elif(opcion == 8):
+					opcion_8()
+			elif(opcion == 9):
 				sys.exit(1)
 			else:
 				print("Digite de nuevo una de la opciones")
