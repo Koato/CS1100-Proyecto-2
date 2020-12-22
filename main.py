@@ -1,4 +1,5 @@
 import sys
+import os
 from Funciones import *
 
 matriz_alumnos = [[201910512,"jose diaz", 11,11,12,13,11,15,12,16,14],
@@ -84,9 +85,6 @@ def submenu():
 			break
 		else:
 			print("\nError, digite solo una de esta opciones .")
-
-
-
 
 def opcion_3():
 	nueva_matriz=[]
@@ -225,6 +223,16 @@ def opcion_1(matriz):
 				print(' ',end='')
 		print('')
 	print("\n")
+
+def opcion_5(matriz):
+	file = open("alumnos.txt", "w", encoding="utf-8")
+	file.write("Código Nombre Apellido 9 notas" + os.linesep)
+	for i in range(len(matriz)):
+		for j in matriz[i]:
+			file.write(str(j).title() + ' ')
+		file.write("\n")
+	file.close()
+
 def menu():
 	opcion=0
 	while(True):
@@ -232,21 +240,30 @@ def menu():
 		print("2.Agregar la informacion de un alumno.")
 		print("3.Mostrar el promedio de todos los alumnos.")
 		print("4.Submenu de notas.")
-		print("5.Salir.")
+		print("5.Grabar en archivo.")
+		print("6.Leer información del archivo.")
+		print("7.Reporte.")
+		print("8.Salir.")
 		print("\n")
 		opcion=input("Digita la opcion : ")
 		if opcion.isdigit():
 			opcion = int(opcion)
-			if(opcion==1 or opcion==2 or opcion==3 or opcion==4):
-				if(opcion==1):
+			if(opcion == 1 or opcion == 2 or opcion == 3 or opcion == 4 or opcion == 5 or opcion == 6 or opcion == 7):
+				if(opcion == 1):
 					opcion_1(matriz_alumnos)
-				elif(opcion==2):
+				elif(opcion == 2):
 					opcion_2()
-				elif(opcion==3):
+				elif(opcion == 3):
 					opcion_3()
-				elif(opcion==4):
+				elif(opcion == 4):
 					submenu()
-			elif(opcion==5):
+				elif(opcion == 5):
+					opcion_5(matriz_alumnos)
+				elif(opcion == 6):
+					opcion_6()
+				elif(opcion == 7):
+					opcion_7()
+			elif(opcion == 8):
 				sys.exit(1)
 			else:
 				print("Digite de nuevo una de la opciones")
@@ -255,6 +272,4 @@ def menu():
 			print("Digite de nuevo una de la opciones")
 			print("\n")
 
-
 menu()
-
